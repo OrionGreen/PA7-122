@@ -41,6 +41,7 @@ private:
 template<class T>
 Node<T>::Node(T newData) {
 	this->mData = newData;
+	this->mpNext = nullptr;
 }
 
 template<class T>

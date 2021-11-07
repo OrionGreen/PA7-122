@@ -20,7 +20,7 @@ class Data
 {
 public:
 
-	Data(Stack<string> newAbsenceDates, int newAbsenceNum = 0, int newRecordNum = 0, int newIDNum = 0, string newName = "", 
+	Data(Stack<string> newAbsenceDates = {}, int newAbsenceNum = 0, int newRecordNum = 0, int newIDNum = 0, string newName = "",
 		string newEmail = "", string newCredits = "", string newMajor = "", string newLevel = "");
 
 	~Data();

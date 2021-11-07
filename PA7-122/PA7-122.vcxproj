@@ -139,17 +139,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AttendanceApp.hpp" />
     <ClInclude Include="Data.hpp" />
     <ClInclude Include="List.hpp" />
     <ClInclude Include="Node.hpp" />
     <ClInclude Include="Stack.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AttendanceApp.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="classList.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="master.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
