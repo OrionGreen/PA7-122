@@ -32,7 +32,8 @@ public:
 	Node<T>* getmpHead() const;
 
 	//member functions
-	bool insert(T const newData);
+	bool insert(T* const newData);
+	void destroyListHelper(Node<T>* const pMem);
 
 private:
 	Node<T>* mpHead;
@@ -45,12 +46,16 @@ List<T>::List() {
 
 template<class T>
 List<T>::~List() {
-	Node<T>* pMem = this->mpHead;
-	Node<T>* pPrev = pMem;
-	while (pPrev != nullptr) {
-		pMem = pMem->getpNext();
-		delete pPrev;
-		pPrev = pMem;
+	destroyListHelper(this->mpHead);
+}
+
+template<class T>
+void List<T>::destroyListHelper(Node<T>* const pMem)
+{
+	if (pMem != nullptr)
+	{
+		destroyListHelper(pMem->getpNext());
+		delete pMem;    // delete from the back of list to the front!
 	}
 }
 
@@ -93,7 +98,7 @@ Node<T>* List<T>::getmpHead() const {
 }
 
 template<class T>
-bool List<T>::insert(T const newData) {
+bool List<T>::insert(T* const newData) {
 	Node<T>* pMem = new Node<T>(newData);
 	bool success = false;
 

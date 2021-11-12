@@ -142,6 +142,7 @@
     <ClInclude Include="AttendanceApp.hpp" />
     <ClInclude Include="Data.hpp" />
     <ClInclude Include="List.hpp" />
+    <ClInclude Include="menu.hpp" />
     <ClInclude Include="Node.hpp" />
     <ClInclude Include="Stack.hpp" />
   </ItemGroup>
@@ -149,6 +150,7 @@
     <ClCompile Include="AttendanceApp.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="classList.csv" />

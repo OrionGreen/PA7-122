@@ -1,6 +1,6 @@
 #include "Data.hpp"
 
-Data::Data(Stack<string> newAbsenceDates, int newAbsenceNum, int newRecordNum, int newIDNum, string newName,
+Data::Data(Stack<string>* newAbsenceDates, int newAbsenceNum, int newRecordNum, int newIDNum, string newName,
 	string newEmail, string newCredits, string newMajor, string newLevel) {
 	this->mAbsenceDates = newAbsenceDates;
 	this->mAbsenceNum = newAbsenceNum;
@@ -14,7 +14,7 @@ Data::Data(Stack<string> newAbsenceDates, int newAbsenceNum, int newRecordNum, i
 }
 
 Data::~Data() {
-	mAbsenceDates.~Stack();
+	mAbsenceDates->~Stack();
 }
 
 
@@ -35,7 +35,7 @@ Data& Data::operator= (const Data& rhs) {
 }
 
 //setters
-void Data::getAbsenceDates(Stack<string> const newAbsenceDates) {
+void Data::getAbsenceDates(Stack<string>* const newAbsenceDates) {
 	this->mAbsenceDates = newAbsenceDates;
 }
 void Data::setAbsenceNum(int const newAbsences) {
@@ -64,7 +64,7 @@ void Data::setLevel(string const newLevel) {
 }
 
 //getters
-Stack<string> Data::getAbsenceDates() const {
+Stack<string>* Data::getAbsenceDates() const {
 	return this->mAbsenceDates;
 }
 int Data::getAbsenceNum()	const {

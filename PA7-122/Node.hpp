@@ -20,7 +20,7 @@ template<class T>
 class Node
 {
 public:
-	Node(T newData);
+	Node(T* newData);
 	~Node();
 	Node<T>& operator= (const Node<T>& rhs);
 
@@ -29,24 +29,24 @@ public:
 	void setNext(Node<T>* const newNode);
 
 	//getters
-	T getData() const;
+	T* getData() const;
 	Node* getpNext() const;
 
 private:
-	T mData;
+	T* mData;
 	Node* mpNext;
 
 };
 
 template<class T>
-Node<T>::Node(T newData) {
+Node<T>::Node(T* newData) {
 	this->mData = newData;
 	this->mpNext = nullptr;
 }
 
 template<class T>
 Node<T>::~Node() {
-
+	delete mData;
 }
 
 template<class T>
@@ -70,7 +70,7 @@ void Node<T>::setNext(Node<T>* const newNode) {
 
 //getters
 template<class T>
-T Node<T>::getData() const {
+T* Node<T>::getData() const{
 	return this->mData;
 }
 

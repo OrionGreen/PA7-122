@@ -20,7 +20,7 @@ class Data
 {
 public:
 
-	Data(Stack<string> newAbsenceDates = {}, int newAbsenceNum = 0, int newRecordNum = 0, int newIDNum = 0, string newName = "",
+	Data(Stack<string>* newAbsenceDates = {}, int newAbsenceNum = 0, int newRecordNum = 0, int newIDNum = 0, string newName = "",
 		string newEmail = "", string newCredits = "", string newMajor = "", string newLevel = "");
 
 	~Data();
@@ -28,7 +28,7 @@ public:
 	Data& operator= (const Data& rhs);
 
 	//setters
-	void getAbsenceDates(Stack<string> const newAbsenceDates);
+	void getAbsenceDates(Stack<string>* const newAbsenceDates);
 	void setAbsenceNum(int const newAbsences);
 	void setRecordNum(int const newRecordNum);
 	void setIDNum(int const newIDNum);
@@ -39,7 +39,7 @@ public:
 	void setLevel(string const newLevel);
 
 	//getters
-	Stack<string> getAbsenceDates() const;
+	Stack<string>* getAbsenceDates() const;
 	int getAbsenceNum()	const;
 	int getRecordNum() const;
 	int getIDNum() const;
@@ -50,7 +50,7 @@ public:
 	string getLevel() const;
 
 private:
-	Stack<string> mAbsenceDates;
+	Stack<string>* mAbsenceDates;
 	int mAbsenceNum;
 	int mRecordNum;
 	int mIDNum;
