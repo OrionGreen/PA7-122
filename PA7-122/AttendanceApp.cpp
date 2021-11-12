@@ -32,6 +32,7 @@ void AttendanceApp::runApp() {
 
 	if (choice == 5) {
 		editAbsences();
+		Sleep(4000);
 	}
 
 	if (choice == 6) {
@@ -58,11 +59,14 @@ void AttendanceApp::importList() {
 		int recordNum = atoi(line.c_str());
 		getline(this->classImport, line, ',');
 		int ID = atoi(line.c_str());
+		char comma = '\0';
+		this->classImport.get(comma);
 		getline(this->classImport, line, ',');
 		string name = line;
-		getline(this->classImport, line, ',');
+		getline(this->classImport, line, '"');
 		name += ',';
 		name += line;
+		this->classImport.get(comma);
 		getline(this->classImport, line, ',');
 		string email = line;
 		getline(this->classImport, line, ',');
@@ -219,7 +223,48 @@ void AttendanceApp::markAbsences() {
 }
 
 void AttendanceApp::editAbsences() {
+	cout << "Please either enter a student name or Id number to edit the absences of. Id numbers consits of 4 digits and student names are formatted Last,First" << endl;
+	string search = "";
+	cin >> search;
 
+	Node<Data>* pMem = mMasterList.getmpHead();
+
+	if (pMem != nullptr) {
+		if (search == pMem->getData()->getName() || search == std::to_string(pMem->getData()->getIDNum())) {
+			cout << "Here is the record of " << pMem->getData()->getName() << " ID Number: " << pMem->getData()->getIDNum() << endl;
+			if (!pMem->getData()->getAbsenceDates()->isEmpty()) {
+				Stack<string> invert;
+				cout << "Absences on record:" << endl;
+				while (!pMem->getData()->getAbsenceDates()->isEmpty()) {
+					cout << pMem->getData()->getAbsenceDates()->peek() << endl;
+					invert.push(pMem->getData()->getAbsenceDates()->peek());
+					pMem->getData()->getAbsenceDates()->pop();
+				}
+
+				cout << "Which absence should be deleted?" << endl;
+				string delab = "";
+				cin >> delab;
+				while (!invert.isEmpty()) {
+					if (invert.peek() == delab) {
+						pMem->getData()->setAbsenceNum(pMem->getData()->getAbsenceNum() - 1);
+						invert.pop();
+						cout << "Absence Successfully Deleted" << endl;
+
+					}
+					else{
+						pMem->getData()->getAbsenceDates()->push(invert.peek());
+						invert.pop();
+					}
+				}
+
+			}
+			else {
+				cout << "Student: " << pMem->getData()->getName() << " Doesn't have and absences to ammend." << endl;
+			}
+		}
+
+		pMem = pMem->getpNext();
+	}
 }
 
 void AttendanceApp::generateReports(int choice) {
