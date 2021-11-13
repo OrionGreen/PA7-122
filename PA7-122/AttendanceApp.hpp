@@ -22,6 +22,7 @@ using std::fstream;
 using std::vector;
 using std::string;
 
+//wrapper class with all my functions for usability of the app
 class AttendanceApp
 {
 public:

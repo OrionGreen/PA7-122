@@ -15,6 +15,7 @@ using std::fstream;
 using std::vector;
 using std::string;
 
+//templated stack class that is mostly just cheating with a vector 
 template<class S>
 class Stack
 {

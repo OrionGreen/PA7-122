@@ -16,6 +16,7 @@ using std::fstream;
 using std::vector;
 using std::string;
 
+//Node class with only getters and setters
 template<class T>
 class Node
 {

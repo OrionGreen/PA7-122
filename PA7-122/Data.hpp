@@ -16,6 +16,7 @@ using std::vector;
 using std::string;
 
 
+//data with stack and other data members
 class Data
 {
 public:

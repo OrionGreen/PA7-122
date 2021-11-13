@@ -17,6 +17,7 @@ using std::fstream;
 using std::vector;
 using std::string;
 
+//List class with insert and destroy thats all that really matters
 template<class T>
 class List
 {

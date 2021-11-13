@@ -1,5 +1,6 @@
 #include "AttendanceApp.hpp"
 
+//opens the fstreams and closes when the wrapper is destroyed
 AttendanceApp::AttendanceApp() {
 	this->classImport.open("classList.csv", std::ios::in);
 	this->masterListStorage.open("master.txt", std::ios::in);
@@ -9,6 +10,7 @@ AttendanceApp::~AttendanceApp() {
 	this->masterListStorage.close();
 }
 
+//app runs from menu
 void AttendanceApp::runApp() {
 	Menu menu;
 	int exit = 0;
@@ -49,6 +51,7 @@ void AttendanceApp::runApp() {
 }
 }
 
+//imports from the csv which wipes the absences clean
 void AttendanceApp::importList() {
 	if(!classImport.is_open()){
 		this->classImport.open("classList.csv", std::ios::in);
@@ -82,6 +85,7 @@ void AttendanceApp::importList() {
 	}
 }
 
+//loads only from the master save doc
 void AttendanceApp::loadMaster() {
 	if (!masterListStorage.is_open()) {
 		this->masterListStorage.open("master.txt", std::ios::in);
@@ -140,6 +144,7 @@ void AttendanceApp::loadMaster() {
 	}
 }
 
+//stores to the master save doc
 void AttendanceApp::storeMaster() {
 	masterListStorage.close();
 	if (!masterListStorage.is_open()) {
@@ -191,6 +196,7 @@ void AttendanceApp::storeMaster() {
 	}
 }
 
+//marks absences iterating through the list
 void AttendanceApp::markAbsences() {
 	Node<Data>* pMem = mMasterList.getmpHead();
 	string date = "";
@@ -222,6 +228,7 @@ void AttendanceApp::markAbsences() {
 	}
 }
 
+//lets you get rid of an absence
 void AttendanceApp::editAbsences() {
 	cout << "Please either enter a student name or Id number to edit the absences of. Id numbers consits of 4 digits and student names are formatted Last,First" << endl;
 	string search = "";
@@ -267,6 +274,7 @@ void AttendanceApp::editAbsences() {
 	}
 }
 
+//generates two different types of reports on absences.
 void AttendanceApp::generateReports(int choice) {
 	Node<Data>* pMem = mMasterList.getmpHead();
 
