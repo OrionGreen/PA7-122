@@ -144,7 +144,8 @@ void AttendanceApp::loadMaster() {
 	}
 }
 
-//stores to the master save doc
+//stores to the master save doc stores in the smae order every time so it's less efficient but I didn't want my list flipping on my every time I store and load,
+//I think attendance should be in a predictable order every time so I traded efficiency for usabillity
 void AttendanceApp::storeMaster() {
 	masterListStorage.close();
 	if (!masterListStorage.is_open()) {
@@ -237,40 +238,42 @@ void AttendanceApp::editAbsences() {
 	Node<Data>* pMem = mMasterList.getmpHead();
 
 	if (pMem != nullptr) {
-		if (search == pMem->getData()->getName() || search == std::to_string(pMem->getData()->getIDNum())) {
-			cout << "Here is the record of " << pMem->getData()->getName() << " ID Number: " << pMem->getData()->getIDNum() << endl;
-			if (!pMem->getData()->getAbsenceDates()->isEmpty()) {
-				Stack<string> invert;
-				cout << "Absences on record:" << endl;
-				while (!pMem->getData()->getAbsenceDates()->isEmpty()) {
-					cout << pMem->getData()->getAbsenceDates()->peek() << endl;
-					invert.push(pMem->getData()->getAbsenceDates()->peek());
-					pMem->getData()->getAbsenceDates()->pop();
-				}
-
-				cout << "Which absence should be deleted?" << endl;
-				string delab = "";
-				cin >> delab;
-				while (!invert.isEmpty()) {
-					if (invert.peek() == delab) {
-						pMem->getData()->setAbsenceNum(pMem->getData()->getAbsenceNum() - 1);
-						invert.pop();
-						cout << "Absence Successfully Deleted" << endl;
-
+		while (pMem != nullptr) {
+			if (search == pMem->getData()->getName() || search == std::to_string(pMem->getData()->getIDNum())) {
+				cout << "Here is the record of " << pMem->getData()->getName() << " ID Number: " << pMem->getData()->getIDNum() << endl;
+				if (!pMem->getData()->getAbsenceDates()->isEmpty()) {
+					Stack<string> invert;
+					cout << "Absences on record:" << endl;
+					while (!pMem->getData()->getAbsenceDates()->isEmpty()) {
+						cout << pMem->getData()->getAbsenceDates()->peek() << endl;
+						invert.push(pMem->getData()->getAbsenceDates()->peek());
+						pMem->getData()->getAbsenceDates()->pop();
 					}
-					else{
-						pMem->getData()->getAbsenceDates()->push(invert.peek());
-						invert.pop();
-					}
-				}
 
+					cout << "Which absence should be deleted?" << endl;
+					string delab = "";
+					cin >> delab;
+					while (!invert.isEmpty()) {
+						if (invert.peek() == delab) {
+							pMem->getData()->setAbsenceNum(pMem->getData()->getAbsenceNum() - 1);
+							invert.pop();
+							cout << "Absence Successfully Deleted" << endl;
+
+						}
+						else {
+							pMem->getData()->getAbsenceDates()->push(invert.peek());
+							invert.pop();
+						}
+					}
+
+				}
+				else {
+					cout << "Student: " << pMem->getData()->getName() << " Doesn't have and absences to ammend." << endl;
+				}
 			}
-			else {
-				cout << "Student: " << pMem->getData()->getName() << " Doesn't have and absences to ammend." << endl;
-			}
+
+			pMem = pMem->getpNext();
 		}
-
-		pMem = pMem->getpNext();
 	}
 }
 

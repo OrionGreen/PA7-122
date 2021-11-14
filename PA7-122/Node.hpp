@@ -23,10 +23,11 @@ class Node
 public:
 	Node(T* newData);
 	~Node();
+	Node(const Node &copy);
 	Node<T>& operator= (const Node<T>& rhs);
 
 	//setters
-	void setData(T const newData);
+	void setData(T* const newData);
 	void setNext(Node<T>* const newNode);
 
 	//getters
@@ -51,6 +52,12 @@ Node<T>::~Node() {
 }
 
 template<class T>
+Node<T>::Node(const Node& copy) {
+	this->mData = copy.getData();
+	this->mpNext = copy.mpNext();
+}
+
+template<class T>
 Node<T>& Node<T>::operator= (const Node<T>& rhs) {
 	this->mData = rhs.getData();
 	this->mpNext = rhs.mpNext();
@@ -60,7 +67,7 @@ Node<T>& Node<T>::operator= (const Node<T>& rhs) {
 
 //setters
 template<class T>
-void Node<T>::setData(T const newData) {
+void Node<T>::setData(T* const newData) {
 	this->mData = newData;
 }
 

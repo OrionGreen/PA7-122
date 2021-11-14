@@ -29,7 +29,7 @@ public:
 	Data& operator= (const Data& rhs);
 
 	//setters
-	void getAbsenceDates(Stack<string>* const newAbsenceDates);
+	void setAbsenceDates(Stack<string>* const newAbsenceDates);
 	void setAbsenceNum(int const newAbsences);
 	void setRecordNum(int const newRecordNum);
 	void setIDNum(int const newIDNum);

@@ -66,10 +66,10 @@ Node<T>& List<T>::operator= (const List<T>& rhs) {
 	Node<T>* pMem = rhs.getmpHead(); 
 
 	while (pMem != nullptr) {
-		T Data = pMem->getData();
+		T* Data = pMem->getData();
 		Node<T>* pNew = new Node<T>(Data);
 		if (pNew != nullptr) {
-			if (this->getmpHead() = nullptr) {
+			if (this->getmpHead() == nullptr) {
 				this->mpHead = pNew;
 			}
 

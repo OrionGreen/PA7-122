@@ -35,7 +35,7 @@ Data& Data::operator= (const Data& rhs) {
 }
 
 //setters
-void Data::getAbsenceDates(Stack<string>* const newAbsenceDates) {
+void Data::setAbsenceDates(Stack<string>* const newAbsenceDates) {
 	this->mAbsenceDates = newAbsenceDates;
 }
 void Data::setAbsenceNum(int const newAbsences) {
